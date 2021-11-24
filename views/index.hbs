@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/stylesheets/index.css">
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 id="title" class="text-center">URL Shortener</h1>
+    <img id="main-image" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="chain">
+  </div>
+  <div class="row justify-content-center">
+    <form id="url-form" action="/records" method="POST">
+      <input id="url" type="text" name="url" class="form-control" placeholder="Input URL here">
+      <button type="submit" class="btn btn-outline-primary">Shorten</button>
+    </form>
+  </div>
+</div>
+<div id="warn-toast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+<script src="/javascripts/index.js" defer></script>
