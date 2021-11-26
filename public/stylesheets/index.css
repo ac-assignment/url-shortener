@@ -1,3 +1,18 @@
-#warn-toast {
-  
+#url-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+}
+#url-form input {
+  background-color: #eee;
+  border: none;
+  margin-bottom: 20px;
+}
+#url-form input::placeholder {
+  color: #bbb;
+}
+#url-form button {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
 }

@@ -24,31 +24,23 @@ html,body {
 }
 body {
   display: flex;
-  align-items: center;
 }
-#title {
+.container {
+  padding-top: 150px;
+}
+.title {
   font-size: 48px;
   margin-bottom: 30px;
 }
-#main-image {
+.main-image {
   width: 270px;
   height: 270px;
   margin-bottom: 40px;
 }
-#url-form {
-  display: flex;
-  flex-direction: column;
-  width: 700px;
-}
-#url-form input {
-  background-color: #eee;
-  border: none;
-  margin-bottom: 20px;
-}
-#url-form input::placeholder {
-  color: #bbb;
-}
-#url-form button {
-  width: 300px;
+.toast {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
   margin: auto;
 }

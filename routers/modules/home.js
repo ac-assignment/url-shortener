@@ -7,6 +7,37 @@ const router = express.Router()
 router.get('/', async (req, res) => {
   try {
     return res.render('index')
+    // return res.render('success', { shortUrl: 'http://localhost:3000' })
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.post('/records', async (req, res) => {
+  const { url } = req.body
+  const isValid = await urlExist(url)
+  
+  if (isValid === false) {
+    return res.render('index', { hasError: true, message: '連線失敗，請確認是否為有效網址' })
+  }
+  
+  let id = null
+  for (let i = 0; i < 99999999; i++) {
+    id = randomId()
+    const record = await Record.findOne({ id }).lean()
+    if (!record) {
+      break
+    }
+  }
+  
+  const shortUrl = `${req.protocol}://${req.header('host')}/${id}`
+  const entity = {
+    id,
+    source_url: url
+  }
+  try {
+    Record.create(entity)
+    return res.render('success', { shortUrl })
   } catch (error) {
     console.log(error)
   }
@@ -20,35 +51,6 @@ router.get('/:id', async (req, res) => {
     } else {
       return res.sendStatus(404)
     }
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-router.post('/records', async (req, res) => {
-  const { url } = req.body
-  const isValid = await urlExist(url)
-  
-  if (isValid === false) {
-    return res.render('index', { hasError: true })
-  }
-  
-  let id = null
-  for (let i = 0; i < 99999999; i++) {
-    id = randomId()
-    const record = await Record.findOne({ id }).lean()
-    if (!record) {
-      break
-    }
-  }
-  
-  const entity = {
-    id,
-    source_url: url
-  }
-  try {
-    Record.create(entity)
-    return res.render('index')
   } catch (error) {
     console.log(error)
   }
