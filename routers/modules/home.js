@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/records', async (req, res) => {
-  const { url } = req.body
+  const url = req.body.url.trim()
   const isValid = await urlExist(url)
   if (isValid === false) {
     const errorId = uuidV1()
