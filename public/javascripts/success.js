@@ -12,9 +12,8 @@ copyBtn.addEventListener('click', function() {
   })
   copyBtn.textContent = 'Copied!'
   Promise.all(
-    copyBtn.getAnimations().map(
-      animation => animation.finished
-    )
+    copyBtn.getAnimations()
+      .map(animation => animation.finished)
   ).then(() => {
     copyBtn.textContent = 'Copy'
   })

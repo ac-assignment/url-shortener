@@ -1,6 +1,7 @@
-const toastWarn = document.getElementById('warn-toast')
-const isDisplay = toastWarn.getAttribute('data-isDisplay')
-if (isDisplay === 'true') {
+const toastWarn = document.getElementById('toast-warn')
+const hasError = toastWarn.getAttribute('data-hasError')
+
+if (hasError === 'true') {
   const toast = new bootstrap.Toast(toastWarn)
   toast.show()
 }

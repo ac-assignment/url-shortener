@@ -1,24 +1,28 @@
 import urlExist from 'url-exist'
 import express from 'express'
+import { v1 as uuidV1 } from 'uuid'
 import randomId from '../../self_modules/randomId.js'
 import Record from '../../models/record.js'
 const router = express.Router()
+const errorUsers = []
 
 router.get('/', async (req, res) => {
-  try {
+  const { userId } = req.cookies
+  if (errorUsers.includes(userId)) {
+    errorUsers.splice(errorUsers.indexOf(userId), 1)
+    return res.render('index', { hasError: true })
+  } else {
     return res.render('index')
-    // return res.render('success', { shortUrl: 'http://localhost:3000' })
-  } catch (error) {
-    console.log(error)
   }
 })
 
 router.post('/records', async (req, res) => {
   const { url } = req.body
   const isValid = await urlExist(url)
-  
   if (isValid === false) {
-    return res.render('index', { hasError: true, message: '連線失敗，請確認是否為有效網址' })
+    const errorId = uuidV1()
+    errorUsers.push(errorId)
+    return res.cookie('userId', errorId).redirect('/')
   }
   
   let id = null
