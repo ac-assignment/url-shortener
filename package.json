@@ -18,7 +18,6 @@
     "express-handlebars": "^6.0.1",
     "mongoose": "^6.0.5",
     "url-exist": "^3.0.0",
-    "url-exists": "^1.0.3",
     "uuid": "^8.3.2"
   }
 }
