@@ -26,13 +26,11 @@ router.post('/records', async (req, res) => {
   }
   
   let id = null
-  for (let i = 0; i < 99999999; i++) {
+  let record = null
+  do {
     id = randomId()
-    const record = await Record.findOne({ id }).lean()
-    if (!record) {
-      break
-    }
-  }
+    record = await Record.findOne({ id }).lean()
+  } while (record)
   
   const shortUrl = `${req.protocol}://${req.header('host')}/${id}`
   const entity = {
@@ -40,7 +38,7 @@ router.post('/records', async (req, res) => {
     source_url: url
   }
   try {
-    Record.create(entity)
+    await Record.create(entity)
     return res.render('success', { shortUrl })
   } catch (error) {
     console.log(error)
