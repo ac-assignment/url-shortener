@@ -6,7 +6,7 @@ import './config/mongoose.js'
 
 const app = express()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.use(express.static('public'))

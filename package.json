@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node -r dotenv/config app.js",
+    "dev": "nodemon -r dotenv/config app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "dotenv": "^12.0.3",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.1",
     "mongoose": "^6.0.5",
